@@ -26,7 +26,7 @@
                   <input
                     type="checkbox"
                     @change="handleTransfer(taskIndex,'todoList')"
-                    :key="taskIndex"
+                    :key="task.id"
                   />
                   <span class="content">{{ task.title }}</span>
                 </div>
@@ -48,7 +48,7 @@
               <li
                 class="item"
                 v-for="(done,doneIndex) in completedList"
-                :key="doneIndex"
+                :key="done.id"
               >
                 <div>
                   <input
