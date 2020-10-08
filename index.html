@@ -28,7 +28,7 @@
                     @change="handleTransfer(taskIndex,'todoList')"
                     :key="taskIndex"
                   />
-                  <span class="content">{{ task }}</span>
+                  <span class="content">{{ task.title }}</span>
                 </div>
                 <button
                   class="delete"
@@ -55,7 +55,7 @@
                     type="checkbox"
                     @change="handleTransfer(doneIndex,'completedList')"
                   />
-                  <span class="content">{{ done }}</span>
+                  <span class="content">{{ done.title }}</span>
                 </div>
                 <button
                   class="delete"
@@ -84,9 +84,12 @@
             this.currentTask = e.target.value;
           },
           handleAdd() {
-            this.todoList.push(this.currentTask);
+            if (this.currentTask == "") return;
+            this.todoList.push({
+              title: this.currentTask,
+              id: Math.random(),
+            });
             this.currentTask = "";
-            console.log(this.todoList);
           },
           handleTransfer(Index, List) {
             if (List == "todoList") {
