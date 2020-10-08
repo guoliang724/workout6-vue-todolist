@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To do List</title>
+    <link rel="stylesheet" href="./reset.css" />
+    <link rel="stylesheet" href="./index.css" />
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.js"></script>
+  </head>
+  <body>
+    <div class="app">
+      <div class="nav">
+        <span class="title">ToDoList</span>
+        <input type="text" @input="handleInput" :value="currentTask" />
+        <button class="btn" @click="handleAdd">Add</button>
+      </div>
+      <div class="body">
+        <div class="doing">
+          <span class="title">Going on </span>
+          <span class="number">0</span>
+          <div class="doing-list">
+            <ul class="list">
+              <li class="item" v-for="(task,taskIndex) in todoList">
+                <div>
+                  <input
+                    type="checkbox"
+                    @change="handleTransfer(taskIndex,'todoList')"
+                    :key="taskIndex"
+                  />
+                  <span class="content">{{ task }}</span>
+                </div>
+                <button
+                  class="delete"
+                  @click="handleDelete(taskIndex,todoList)"
+                >
+                  Delete
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="complete">
+          <span class="title">Completed</span>
+          <span class="number">{{ completedList.length }}</span>
+          <div class="complete-list">
+            <ul class="list">
+              <li
+                class="item"
+                v-for="(done,doneIndex) in completedList"
+                :key="doneIndex"
+              >
+                <div>
+                  <input
+                    type="checkbox"
+                    @change="handleTransfer(doneIndex,'completedList')"
+                  />
+                  <span class="content">{{ done }}</span>
+                </div>
+                <button
+                  class="delete"
+                  @click="handleDelete(doneIndex,completedList)"
+                >
+                  Delete
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      var vm = new Vue({
+        el: ".app",
+        data: {
+          doingList: [],
+          completeList: [],
+          currentTask: "",
+          todoList: [],
+          completedList: [],
+        },
+        methods: {
+          handleInput(e) {
+            this.currentTask = e.target.value;
+          },
+          handleAdd() {
+            this.todoList.push(this.currentTask);
+            this.currentTask = "";
+            console.log(this.todoList);
+          },
+          handleTransfer(Index, List) {
+            if (List == "todoList") {
+              var completedItem = this.todoList.splice(Index, 1);
+              this.completedList.push(...completedItem);
+            }
+            if (List == "completedList") {
+              var todoItem = this.completedList.splice(Index, 1);
+              this.todoList.push(...todoItem);
+            }
+          },
+          handleDelete(taskIndex, List) {
+            List.splice(taskIndex, 1);
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

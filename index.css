@@ -1,0 +1,64 @@
+body {
+  font-size: 25px;
+}
+.nav {
+  background-color: silver;
+  height: 70px;
+}
+.nav .title {
+  display: inline-block;
+  margin-left: 100px;
+  margin-top: 20px;
+}
+
+.nav input {
+  width: 200px;
+  border-radius: 5px;
+  height: 20px;
+}
+.nav .btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+}
+
+.body {
+  height: 100vh;
+  width: 100%;
+  background-color: royalblue;
+}
+
+.doing,
+.complete {
+  margin-left: 100px;
+  padding-top: 20px;
+}
+.body .number {
+  background-color: slategray;
+  padding: 5px;
+  border-radius: 50%;
+  color: white;
+  margin-right: 100px;
+}
+.doing .doing-list,
+.complete-list {
+  margin: 10px;
+  width: 40%;
+}
+.doing-list li,
+.complete-list li {
+  margin-top: 10px;
+  padding-left: 20px;
+  background-color: blanchedalmond;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+}
+.item button {
+  border-radius: 10%;
+}
+.complete-list {
+  opacity: 0.5;
+}
